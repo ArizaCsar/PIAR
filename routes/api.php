@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Pais;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +18,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/**
+ * Rutas pais
+ *  */
+
+Route::get('paises', function() { return Pais::all(); });
+
+Route::get('pais/{codigoPais}', function($codigoPais) {
+    return Pais::where('codigoPais', $codigoPais)->firstOrFail();
+});
+
+
+/**
+ * Rutas Ciudad
+ */
+
+
