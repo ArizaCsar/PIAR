@@ -14,28 +14,28 @@ class CreateEstudiantesTable extends Migration
     public function up()
     {
         Schema::create('estudiantes', function (Blueprint $table) {
-            $table->codigoEstudiante();
-            $table->codigoTipoId();
-            $table->numeroDocumento();
+            $table->increments('odigoEstudiante');
+            $table->integer('codigoTipoId');
+            $table->integer('numeroDocumento');
             $table->string('nombres');
             $table->string('apellidos');
-            $table->codigoCiudad();
+            $table->integer('codigoCiudad');
             $table->timestamp('fechaNacimiento');
-            $table->edad();
-            $table->codigoDepartamento();
+            $table->integer('edad');
+            $table->integer('codigoDepartamento');
             $table->string('municipioVivienda');
             $table->string('barrioVivienda');
             $table->string('direccionVivienda');
             $table->string('telefonoVivienda');
             $table->string('correoElectronico');
-            $table->codigoGrado();
+            $table->integer('codigoGrado');
             $table->string('centroProteccion');
             $table->string('descripcionCentroProteccion');
             $table->string('leyVictimas');
             $table->string('codigoGrupoEtnico');
-            $table->registroLeyVictimas();
+            $table->integer('codigoEntidad');
             $table->string('afiliacionSistemaSalud');
-            $table->codigoEps();
+            $table->integer('codigoEps');
             $table->string('afiliacionEps');
             $table->string('atencionActualSalud');
             $table->string('atencionEmergencia');
@@ -46,7 +46,7 @@ class CreateEstudiantesTable extends Migration
             $table->string('descripcionTratamiento');
             $table->string('medicamentos');
             $table->string('objetos');
-            $table->cantidadHermanos();
+            $table->integer('cantidadHermanos');
             $table->string('lugarOcupa');
             $table->string('bajoProteccion');
             $table->string('recibeSubsidio');
@@ -54,14 +54,13 @@ class CreateEstudiantesTable extends Migration
             $table->string('vinculacionEducativa');
             $table->string('razonNegativa');
             $table->string('entidadVinculado');
-            $table->codigoGrado();
             $table->string('aproboCurso');
             $table->string('razonCambio');
             $table->string('recibePiar');
             $table->string('institucionRecibe');
             $table->string('programasComplementarios');
             $table->string('medioTransporte');
-            $table->codigoDistancia();
+            $table->integer('codigoDistancia');
         });
     }
 

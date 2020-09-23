@@ -14,11 +14,16 @@ class CreateEntidadesEducativasTable extends Migration
     public function up()
     {
         Schema::create('entidades_educativas', function (Blueprint $table) {
-            $table->increments('codigoEntidad');            
+            $table->increments('codigoEntidad');
             $table->string('nombreEntidad');
             $table->string('principal');
             $table->integer('codigoSede');
             $table->integer('codigoJornada');
+        });
+
+        Schema::table('entidades_educativas', function (Blueprint $table) {
+            $table->foreign('codigoSede')->references('codigoSede')->on('sedes');
+            $table->foreign('codigoJornada')->references('codigoJornada')->on('jornadas');
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateObjetosApoyosTable extends Migration
+class CreateEpsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateObjetosApoyosTable extends Migration
      */
     public function up()
     {
-        Schema::create('objetos__apoyos', function (Blueprint $table) {
-            $table->codigoObjetos();
-            $table->string('descripcionObjeto');
+        Schema::create('eps', function (Blueprint $table) {
+            $table->increments('codigoEps');
+            $table->string('descripcionEps');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateObjetosApoyosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('objetos__apoyos');
+        Schema::dropIfExists('eps');
     }
 }

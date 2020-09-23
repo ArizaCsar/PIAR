@@ -14,9 +14,13 @@ class CreateDepartamentosTable extends Migration
     public function up()
     {
         Schema::create('departamentos', function (Blueprint $table) {
-            $table->string('codigoDepartamento');
+            $table->string('codigoDepartamento')->primary('codigoDepartamento');
             $table->string('descripcionDepartamento');
             $table->string('codigoPais');
+        });
+
+        Schema::table('departamentos', function (Blueprint $table) {
+            $table->foreign('codigoPais')->references('codigoPais')->on('paises');
         });
     }
 

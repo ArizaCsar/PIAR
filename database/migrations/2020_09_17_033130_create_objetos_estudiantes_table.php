@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaisTable extends Migration
+class CreateObjetosEstudiantesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreatePaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('pais', function (Blueprint $table) {
-            $table->string('codigoPais');
-            $table->string('descripcionPais');
+        Schema::create('objetos_estudiantes', function (Blueprint $table) {
+            $table->increments('codigoEstudiante');
+            $table->integer('codigoObjeto');
         });
     }
 
@@ -26,6 +26,6 @@ class CreatePaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pais');
+        Schema::dropIfExists('objetos__estudiantes');
     }
 }

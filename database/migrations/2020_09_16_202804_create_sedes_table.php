@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTiposIdentificacionTable extends Migration
+class CreateSedesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTiposIdentificacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipos__identificacion', function (Blueprint $table) {
-            $table->codigoTipoId();
-            $table->string('descripcionTipoId');
+        Schema::create('sedes', function (Blueprint $table) {
+            $table->integer('codigoSede')->autoIncrement();
+            $table->string('descripcionSede');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateTiposIdentificacionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipos__identificacions');
+        Schema::dropIfExists('sedes');
     }
 }

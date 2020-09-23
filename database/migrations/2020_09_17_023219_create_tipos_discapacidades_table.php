@@ -14,7 +14,7 @@ class CreateTiposDiscapacidadesTable extends Migration
     public function up()
     {
         Schema::create('tipos_discapacidades', function (Blueprint $table) {
-            $table->increments('codigoTipoDiscapacidad');            
+            $table->integer('codigoTipoDiscapacidad')->autoIncrement();
             $table->string('descripcionTipoDiscapacidad');
         });
     }

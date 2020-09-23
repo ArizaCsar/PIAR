@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEpsTable extends Migration
+class CreateJornadasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateEpsTable extends Migration
      */
     public function up()
     {
-        Schema::create('eps', function (Blueprint $table) {
-            $table->codigoEps();
-            $table->string('descripcionEps');
+        Schema::create('jornadas', function (Blueprint $table) {
+            $table->integer('codigoJornada')->autoIncrement();
+            $table->string('descripcionJornada');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateEpsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eps');
+        Schema::dropIfExists('jornadas');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGradosTable extends Migration
+class CreateGruposEtnicosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateGradosTable extends Migration
      */
     public function up()
     {
-        Schema::create('grados', function (Blueprint $table) {
-            $table->codigoGrado();
-            $table->descripcionGrado();
+        Schema::create('grupos_etnicos', function (Blueprint $table) {
+            $table->increments('codigoGrupoEtnico');
+            $table->string('descripcionGrupoEtnico');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateGradosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grados');
+        Schema::dropIfExists('grupos__etnicos');
     }
 }

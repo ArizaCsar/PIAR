@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSedesTable extends Migration
+class CreateTiposTransportesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateSedesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sedes', function (Blueprint $table) {
-            $table->increments('codigoSede');           
-            $table->string('descripcionSede');
+        Schema::create('tipos_transportes', function (Blueprint $table) {
+            $table->increments('codigoTipoTransporte');
+            $table->string('condigoTipoTransporte');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateSedesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sedes');
+        Schema::dropIfExists('tipos__transportes');
     }
 }

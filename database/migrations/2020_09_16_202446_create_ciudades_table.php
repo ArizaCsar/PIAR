@@ -14,9 +14,13 @@ class CreateCiudadesTable extends Migration
     public function up()
     {
         Schema::create('ciudades', function (Blueprint $table) {
-            $table->string('codigoCiudad');
+            $table->string('codigoCiudad')->primary('codigoCiudad');
             $table->string('descripcionCiudad');
             $table->string('codigoDepartamento');
+        });
+
+        Schema::table('ciudades', function (Blueprint $table) {
+            $table->foreign('codigoDepartamento')->references('codigoDepartamento')->on('departamentos');
         });
     }
 

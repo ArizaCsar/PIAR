@@ -14,7 +14,7 @@ class CreateParentescosTable extends Migration
     public function up()
     {
         Schema::create('parentescos', function (Blueprint $table) {
-            $table->codigoParentesco();
+            $table->increments('codigoParentesco');
             $table->string('descripcionParentesco');
         });
     }

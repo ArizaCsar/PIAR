@@ -14,13 +14,13 @@ class CreateVinculosTable extends Migration
     public function up()
     {
         Schema::create('vinculos', function (Blueprint $table) {
-            $table->codigoEstudiante();
+            $table->increments('codigoEstudiante');
             $table->string('parentezco');
             $table->string('nombres');
             $table->string('apellidos');
-            $table->codigoOcupacion();
-            $table->codigoGrado();
-            $table->telefono();
+            $table->integer('codigoOcupacion');
+            $table->integer('codigoGrado');
+            $table->integer('telefono');
             $table->string('correoElectronico');
             $table->string('apoyoCrianza');
             $table->string('vivenJuntos');

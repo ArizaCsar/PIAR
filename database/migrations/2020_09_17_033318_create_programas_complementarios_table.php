@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTiposTransportesTable extends Migration
+class CreateProgramasComplementariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTiposTransportesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipos__transportes', function (Blueprint $table) {
-            $table->codigoTipoTransporte();
-            $table->string('condigoTipoTransporte');
+        Schema::create('programas_complementarios', function (Blueprint $table) {
+            $table->increments('codigoEstudiante');
+            $table->string('programa');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateTiposTransportesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipos__transportes');
+        Schema::dropIfExists('programas__complementarios');
     }
 }

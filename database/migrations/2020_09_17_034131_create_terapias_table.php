@@ -14,7 +14,7 @@ class CreateTerapiasTable extends Migration
     public function up()
     {
         Schema::create('terapias', function (Blueprint $table) {
-            $table->codigoEstudiante();
+            $table->increments('codigoEstudiante');
             $table->string('terapia');
             $table->string('codigoFrecuencia');
         });

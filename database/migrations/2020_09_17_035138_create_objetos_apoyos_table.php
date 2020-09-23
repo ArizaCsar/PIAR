@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJornadasTable extends Migration
+class CreateObjetosApoyosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateJornadasTable extends Migration
      */
     public function up()
     {
-        Schema::create('jornadas', function (Blueprint $table) {
-            $table->increments('codigoJornada');
-            $table->string('descripcionJornada');
+        Schema::create('objetos_apoyos', function (Blueprint $table) {
+            $table->increments('codigoObjetos');
+            $table->string('descripcionObjeto');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateJornadasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jornadas');
+        Schema::dropIfExists('objetos__apoyos');
     }
 }
