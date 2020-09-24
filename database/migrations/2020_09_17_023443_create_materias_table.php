@@ -14,7 +14,7 @@ class CreateMateriasTable extends Migration
     public function up()
     {
         Schema::create('materias', function (Blueprint $table) {
-            $table->increments('codigoMateria');            
+            $table->integer('codigoMateria')->autoIncrement();            
             $table->string('descripcionMateria');
         });
     }

@@ -14,7 +14,7 @@ class CreateDistanciasTable extends Migration
     public function up()
     {
         Schema::create('distancias', function (Blueprint $table) {
-            $table->increments('codigoDistancia');
+            $table->integer('codigoDistancia')->autoIncrement();
             $table->string('descripcionDistancia');
         });
     }

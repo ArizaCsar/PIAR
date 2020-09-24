@@ -15,11 +15,17 @@ class CreateAjustesRazonablesTable extends Migration
     {
         Schema::create('ajustes_razonables', function (Blueprint $table) {
             $table->integer('codigoPiar');
-            $table->integer('codigoMeteria');
+            $table->integer('codigoMateria');
             $table->string('objetivo');
             $table->string('barrera');
             $table->string('ajuste');
             $table->string('evalucacion');
+        });
+
+        Schema::table('ajustes_razonables', function (Blueprint $table) {
+            $table->foreign('codigoPiar')->references('codigoPiar')->on('piars');
+            $table->foreign('codigoMateria')->references('codigoMateria')->on('materias');
+
         });
     }
 

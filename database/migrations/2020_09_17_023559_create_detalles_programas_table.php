@@ -14,10 +14,16 @@ class CreateDetallesProgramasTable extends Migration
     public function up()
     {
         Schema::create('detalles_programas', function (Blueprint $table) {
-            $table->increments('codigoPrograma');            
-            $table->string('contrasena');
+            $table->integer('codigoPrograma');            
+            $table->integer('codigoMateria');
             $table->integer('codigoTercero');
 
+        });
+
+        Schema::table('detalles_programas', function (Blueprint $table) {
+            $table->foreign('codigoPrograma')->references('codigoPrograma')->on('programas');
+            $table->foreign('codigoMateria')->references('codigoMateria')->on('materias');
+            $table->foreign('codigoTercero')->references('codigoTercero')->on('terceros');
         });
     }
 

@@ -14,26 +14,26 @@ class CreateEstudiantesTable extends Migration
     public function up()
     {
         Schema::create('estudiantes', function (Blueprint $table) {
-            $table->increments('odigoEstudiante');
+            $table->integer('codigoEstudiante')->autoIncrement();
             $table->integer('codigoTipoId');
             $table->integer('numeroDocumento');
             $table->string('nombres');
             $table->string('apellidos');
-            $table->integer('codigoCiudad');
+            $table->string('codigoCiudad');
             $table->timestamp('fechaNacimiento');
             $table->integer('edad');
-            $table->integer('codigoDepartamento');
-            $table->string('municipioVivienda');
-            $table->string('barrioVivienda');
+            $table->string('codigoDepartamento');
+            /* $table->string('municipioVivienda'); */            
+            $table->string('codigoBarrio');
             $table->string('direccionVivienda');
             $table->string('telefonoVivienda');
             $table->string('correoElectronico');
             $table->integer('codigoGrado');
             $table->string('centroProteccion');
             $table->string('descripcionCentroProteccion');
-            $table->string('leyVictimas');
-            $table->string('codigoGrupoEtnico');
-            $table->integer('codigoEntidad');
+            /* $table->string('leyVictimas'); */
+            $table->integer('codigoGrupoEtnico');
+            /* $table->integer('codigoEntidad'); */ /* No esta en el MER */
             $table->string('afiliacionSistemaSalud');
             $table->integer('codigoEps');
             $table->string('afiliacionEps');
@@ -61,6 +61,19 @@ class CreateEstudiantesTable extends Migration
             $table->string('programasComplementarios');
             $table->string('medioTransporte');
             $table->integer('codigoDistancia');
+        });
+
+        Schema::table('estudiantes', function (Blueprint $table) {
+            $table->foreign('codigoTipoId')->references('codigoTipoId')->on('tipos_identificacion');
+            $table->foreign('codigoCiudad')->references('codigoCiudad')->on('ciudades');
+            $table->foreign('codigoDepartamento')->references('codigoDepartamento')->on('departamentos');
+            $table->foreign('codigoBarrio')->references('codigoBarrio')->on('barrios');
+            $table->foreign('codigoGrado')->references('codigoGrado')->on('grados');
+            $table->foreign('codigoGrupoEtnico')->references('codigoGrupoEtnico')->on('grupos_etnicos');
+            $table->foreign('codigoEps')->references('codigoEps')->on('eps');
+            $table->foreign('codigoDistancia')->references('codigoDistancia')->on('distancias');
+            
+
         });
     }
 

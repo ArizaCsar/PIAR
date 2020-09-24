@@ -14,8 +14,13 @@ class CreateObjetosEstudiantesTable extends Migration
     public function up()
     {
         Schema::create('objetos_estudiantes', function (Blueprint $table) {
-            $table->increments('codigoEstudiante');
-            $table->integer('codigoObjeto');
+            $table->integer('codigoObjeto')->autoIncrement();
+            $table->integer('codigoEstudiante');
+        });
+
+        Schema::table('objetos_estudiantes', function (Blueprint $table) {
+            $table->foreign('codigoEstudiante')->references('codigoEstudiante')->on('estudiantes');
+
         });
     }
 

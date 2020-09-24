@@ -14,7 +14,7 @@ class CreateGruposEtnicosTable extends Migration
     public function up()
     {
         Schema::create('grupos_etnicos', function (Blueprint $table) {
-            $table->increments('codigoGrupoEtnico');
+            $table->integer('codigoGrupoEtnico')->autoIncrement();
             $table->string('descripcionGrupoEtnico');
         });
     }

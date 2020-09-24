@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProgramasComplementariosTable extends Migration
+class CreateActoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateProgramasComplementariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('programas_complementarios', function (Blueprint $table) {
-            $table->increments('codigoEstudiante');
-            $table->string('programa');
+        Schema::create('actores', function (Blueprint $table) {
+            $table->integer('codigoActor')->autoIncrement();
+            $table->string('descripcionActor');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateProgramasComplementariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('programas__complementarios');
+        Schema::dropIfExists('actores');
     }
 }

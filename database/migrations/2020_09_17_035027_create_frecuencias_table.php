@@ -14,7 +14,7 @@ class CreateFrecuenciasTable extends Migration
     public function up()
     {
         Schema::create('frecuencias', function (Blueprint $table) {
-            $table->increments('codigoFrecuencia');
+            $table->integer('codigoFrecuencia')->autoIncrement();
             $table->string('descripcionFrecuencia');
         });
     }

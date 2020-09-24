@@ -14,13 +14,20 @@ class CreatePiarsTable extends Migration
     public function up()
     {
         Schema::create('piars', function (Blueprint $table) {
-            $table->increments('codigoPiar');
+            $table->integer('codigoPiar')->autoIncrement();
             $table->timestamp('fechaCreacion');
             $table->integer('codigoEstudiante');
             $table->string('nombreDiligente');
             $table->integer('codigoCargo');
         });
+
+        Schema::table('piars', function (Blueprint $table) {
+            $table->foreign('codigoEstudiante')->references('codigoEstudiante')->on('estudiantes');
+            $table->foreign('codigoCargo')->references('codigoCargo')->on('cargos');
+           
+        });
     }
+    
 
     /**
      * Reverse the migrations.

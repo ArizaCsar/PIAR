@@ -14,9 +14,15 @@ class CreateTerapiasTable extends Migration
     public function up()
     {
         Schema::create('terapias', function (Blueprint $table) {
-            $table->increments('codigoEstudiante');
+            $table->integer('codigoEstudiante');
             $table->string('terapia');
-            $table->string('codigoFrecuencia');
+            $table->integer('codigoFrecuencia');
+        });
+
+        Schema::table('terapias', function (Blueprint $table) {
+            $table->foreign('codigoEstudiante')->references('codigoEstudiante')->on('estudiantes');
+            $table->foreign('codigoFrecuencia')->references('codigoFrecuencia')->on('frecuencias');
+
         });
     }
 

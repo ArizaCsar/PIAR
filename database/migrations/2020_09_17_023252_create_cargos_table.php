@@ -14,8 +14,10 @@ class CreateCargosTable extends Migration
     public function up()
     {
         Schema::create('cargos', function (Blueprint $table) {
-            $table->increments('codigoCargo');            
+            $table->integer('codigoCargo')->autoIncrement();            
             $table->string('descripcionCargo');
+
+
         });
     }
 

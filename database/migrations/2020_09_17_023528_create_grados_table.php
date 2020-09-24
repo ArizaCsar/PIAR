@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDependenciasTable extends Migration
+class CreateGradosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateDependenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('dependencias', function (Blueprint $table) {
-            $table->increments('codigoDependencia');            
-            $table->string('descripcionDependencia');
+        Schema::create('grados', function (Blueprint $table) {
+            $table->integer('codigoGrado')->autoIncrement();            
+            $table->string('descripcionGrado');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateDependenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dependencias');
+        Schema::dropIfExists('grados');
     }
 }

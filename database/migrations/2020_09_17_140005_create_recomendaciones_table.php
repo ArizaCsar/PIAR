@@ -19,6 +19,11 @@ class CreateRecomendacionesTable extends Migration
             $table->string('accion');
             $table->string('estrategia');
         });
+
+        Schema::table('recomendaciones', function (Blueprint $table) {
+            $table->foreign('codigoPiar')->references('codigoPiar')->on('piars');           
+            $table->foreign('codigoActor')->references('codigoActor')->on('actores');
+        });
     }
 
     /**

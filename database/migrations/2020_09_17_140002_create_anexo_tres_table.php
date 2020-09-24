@@ -19,6 +19,10 @@ class CreateAnexoTresTable extends Migration
             $table->string('compromisos');
             
         });
+
+        Schema::table('anexo_tres', function (Blueprint $table) {
+            $table->foreign('codigoPiar')->references('codigoPiar')->on('piars');           
+        });
     }
 
     /**

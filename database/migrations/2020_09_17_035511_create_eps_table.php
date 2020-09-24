@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAnexoDosTable extends Migration
+class CreateEpsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateAnexoDosTable extends Migration
      */
     public function up()
     {
-        Schema::create('anexo_dos', function (Blueprint $table) {
-            $table->integer('codigoPiar');
-            $table->timestamp('fechaCreacion');
-            $table->string('descripcionGeneral');
-            $table->string('habilidades');
+        Schema::create('eps', function (Blueprint $table) {
+            $table->integer('codigoEps')->autoIncrement();
+            $table->string('descripcionEps');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateAnexoDosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('anexo_dos');
+        Schema::dropIfExists('eps');
     }
 }

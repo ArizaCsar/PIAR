@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActividadesAnexoTresTable extends Migration
+class CreateAnexoDosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateActividadesAnexoTresTable extends Migration
      */
     public function up()
     {
-        Schema::create('actividades_anexo_tres', function (Blueprint $table) {
+        Schema::create('anexo_dos', function (Blueprint $table) {
             $table->integer('codigoPiar');
-            $table->string('nombreActividad');
-            $table->string('descripcionEstrategia');
-            $table->integer('codigoFrecuencia');
+            $table->timestamp('fechaCreacion');
+            $table->string('descripcionGeneral');
+            $table->string('habilidades');
         });
 
-        Schema::table('actividades_anexo_tres', function (Blueprint $table) {
+        Schema::table('anexo_dos', function (Blueprint $table) {
             $table->foreign('codigoPiar')->references('codigoPiar')->on('piars');           
-            $table->foreign('codigoFrecuencia')->references('codigoFrecuencia')->on('frecuencias');
         });
     }
 
@@ -33,6 +32,6 @@ class CreateActividadesAnexoTresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actividades_anexo_tres');
+        Schema::dropIfExists('anexo_dos');
     }
 }

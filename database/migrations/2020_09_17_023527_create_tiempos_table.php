@@ -14,7 +14,7 @@ class CreateTiemposTable extends Migration
     public function up()
     {
         Schema::create('tiempos', function (Blueprint $table) {
-            $table->increments('codigoTiempo');            
+            $table->integer('codigoTiempo')->autoIncrement();            
             $table->string('descripcionTiempo');
         });
     }

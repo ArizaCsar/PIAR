@@ -14,11 +14,16 @@ class CreateTercerosTable extends Migration
     public function up()
     {
         Schema::create('terceros', function (Blueprint $table) {
-            $table->increments('codigoTercero');            
+            $table->integer('codigoTercero')->autoIncrement();            
             $table->string('contrasena');
             $table->string('nombreTercero');
             $table->integer('codigoCargo');
             $table->integer('codigoDependencia');
+        });
+
+        Schema::table('terceros', function (Blueprint $table) {
+            $table->foreign('codigoCargo')->references('codigoCargo')->on('cargos');
+            $table->foreign('codigoDependencia')->references('codigoDependencia')->on('dependencias');
         });
     }
 

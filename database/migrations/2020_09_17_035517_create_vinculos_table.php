@@ -14,7 +14,7 @@ class CreateVinculosTable extends Migration
     public function up()
     {
         Schema::create('vinculos', function (Blueprint $table) {
-            $table->increments('codigoEstudiante');
+            $table->integer('codigoEstudiante');
             $table->string('parentezco');
             $table->string('nombres');
             $table->string('apellidos');
@@ -24,6 +24,13 @@ class CreateVinculosTable extends Migration
             $table->string('correoElectronico');
             $table->string('apoyoCrianza');
             $table->string('vivenJuntos');
+        });
+
+        Schema::table('vinculos', function (Blueprint $table) {
+            $table->foreign('codigoEstudiante')->references('codigoEstudiante')->on('estudiantes');
+            $table->foreign('codigoOcupacion')->references('codigoOcupacion')->on('ocupaciones');
+            $table->foreign('codigoGrado')->references('codigoGrado')->on('grados');
+           
         });
     }
 

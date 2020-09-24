@@ -14,12 +14,18 @@ class CreateProgramasTable extends Migration
     public function up()
     {
         Schema::create('programas', function (Blueprint $table) {
-            $table->increments('codigoPrograma');            
+            $table->integer('codigoPrograma')->autoIncrement();            
             $table->string('descripcionPrograma');
             $table->integer('codigoGrado');
             $table->integer('codigoTiempo');
 
         });
+
+        Schema::table('programas', function (Blueprint $table) {
+            $table->foreign('codigoGrado')->references('codigoGrado')->on('grados');
+            $table->foreign('codigoTiempo')->references('codigoTiempo')->on('tiempos');
+        });
+
     }
 
     /**
