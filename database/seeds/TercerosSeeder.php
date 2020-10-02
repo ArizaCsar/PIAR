@@ -23,7 +23,7 @@ class TercerosSeeder extends Seeder
         DB::table('terceros')->insert([
             "contrasena" => Hash::make("test"),
             "nombreTercero" => "Andres",
-            "codigoCargo" => "4",
+            "codigoCargo" => "3",
             "codigoDependencia" => "2"
         ]);
 

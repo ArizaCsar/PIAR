@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Pais;
 use App\DTO\Login;
 use App\Http\Controllers\Login as LoginController;
+use App\Paises;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,10 +24,10 @@ Route::post('login',[LoginController::class, 'doLogin'], function () {
  *
  */
 
-Route::get('paises', function() { return Pais::all(); });
+Route::get('paises', function() { return Paises::all(); });
 
 Route::get('pais/{codigoPais}', function($codigoPais) {
-    return Pais::where('codigoPais', $codigoPais)->firstOrFail();
+    return Paises::where('codigoPais', $codigoPais)->firstOrFail();
 });
 
 Route::post('users/{id}', function ($id) {
