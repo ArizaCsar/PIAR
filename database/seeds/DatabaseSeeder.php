@@ -1,5 +1,6 @@
 <?php
 
+use App\Dependencias;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        $this->call(PaisesSeeder::class);
+        $this->call(DepartamentosSeeder::class);
+        $this->call(CiudadesSeeder::class);
+        $this->call(CargosSeeder::class);
+        $this->call(DependenciasSeeder::class);
+        $this->call(TercerosSeeder::class);
     }
 }

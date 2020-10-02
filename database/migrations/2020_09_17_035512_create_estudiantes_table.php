@@ -23,7 +23,8 @@ class CreateEstudiantesTable extends Migration
             $table->timestamp('fechaNacimiento');
             $table->integer('edad');
             $table->string('codigoDepartamento');
-            /* $table->string('municipioVivienda'); */            
+
+            /* $table->string('municipioVivienda'); */
             $table->string('codigoBarrio');
             $table->string('direccionVivienda');
             $table->string('telefonoVivienda');
@@ -64,6 +65,9 @@ class CreateEstudiantesTable extends Migration
         });
 
         Schema::table('estudiantes', function (Blueprint $table) {
+
+
+
             $table->foreign('codigoTipoId')->references('codigoTipoId')->on('tipos_identificacion');
             $table->foreign('codigoCiudad')->references('codigoCiudad')->on('ciudades');
             $table->foreign('codigoDepartamento')->references('codigoDepartamento')->on('departamentos');
@@ -72,8 +76,6 @@ class CreateEstudiantesTable extends Migration
             $table->foreign('codigoGrupoEtnico')->references('codigoGrupoEtnico')->on('grupos_etnicos');
             $table->foreign('codigoEps')->references('codigoEps')->on('eps');
             $table->foreign('codigoDistancia')->references('codigoDistancia')->on('distancias');
-            
-
         });
     }
 
