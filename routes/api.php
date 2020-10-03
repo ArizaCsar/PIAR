@@ -30,6 +30,10 @@ Route::get('pais/{codigoPais}', function($codigoPais) {
     return Paises::where('codigoPais', $codigoPais)->firstOrFail();
 });
 
+Route::delete('pais/{codigoPais}', function($codigoPais) {
+    return Paises::where('codigoPais', $codigoPais)->delete();
+});
+
 Route::post('users/{id}', function ($id) {
 
 });
