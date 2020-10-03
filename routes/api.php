@@ -31,7 +31,12 @@ Route::get('pais/{codigoPais}', function($codigoPais) {
 });
 
 Route::delete('pais/{codigoPais}', function($codigoPais) {
-    return Paises::where('codigoPais', $codigoPais)->delete();
+    try {
+        return Paises::where('codigoPais', $codigoPais)->delete();        
+    } catch (\Throwable $th) {
+        return response()->json('Error al eliminar el país porque comparte información con algunos departamentos', 400);
+    }
+
 });
 
 Route::post('users/{id}', function ($id) {
