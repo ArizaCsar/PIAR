@@ -16,32 +16,54 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('login',[LoginController::class, 'doLogin'], function () {
-});
+Route::post('login',[LoginController::class, 'doLogin'], function () {});
 
-/**
- * Rutas pais
- *
+/********************************************************
+ *                      Rutas pais                      *
+ ********************************************************
  */
 
-Route::get('paises', function() { return Paises::all(); });
+ // Obtiene todos los paises de base de datos
+ Route::get('paises', function() { return Paises::all(); });
 
-Route::get('pais/{codigoPais}', function($codigoPais) {
+ // Obtiene el país con el código obtenido por url de base de datos
+ Route::get('pais/{codigoPais}', function($codigoPais) {
     return Paises::where('codigoPais', $codigoPais)->firstOrFail();
 });
 
+// Almacena el país obtenido de la petición en base de datos
+Route::post('pais', function (Request $request) {
+    try {
+        $pais = new Paises();
+        $pais->codigoPais = $request->codigoPais;
+        $pais->descripcionPais = $request->descripcionPais;
+        $pais->save();
+    } catch (\Throwable $th) {
+        return response()->json(["message" => 'Error al crear el país ' . $request->descripcionPais, "status" => 400, "trace" => $th], 400);
+    }
+});
+
+// Actualiza la descripción del país en base de datos
+Route::put('pais/{codigoPais}', function($codigoPais, Request $request) {
+    try {
+        $pais = Paises::where('codigoPais', $codigoPais)->firstOrFail();
+        $pais->descripcionPais = $request->descripcionPais;
+        $pais->save();
+        return true;
+    } catch (\Throwable $th) {
+        return response()->json(["message" => 'Error al actualizar el país con código ' . $codigoPais, "status" => 400, "trace" => $th], 400);
+    }
+});
+
+// Elimina el país con el código obtenido por url
 Route::delete('pais/{codigoPais}', function($codigoPais) {
     try {
-        return Paises::where('codigoPais', $codigoPais)->delete();        
+        return Paises::where('codigoPais', $codigoPais)->delete();
     } catch (\Throwable $th) {
-        return response()->json('Error al eliminar el país porque comparte información con algunos departamentos', 400);
+        return response()->json(["message" => 'Error al eliminar el país porque comparte información con algunos departamentos', "status" => 400, "trace" => $th], 400);
     }
-
 });
 
-Route::post('users/{id}', function ($id) {
-
-});
 /**
  * Rutas Ciudad
  *
