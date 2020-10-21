@@ -6,7 +6,7 @@ use App\Http\Controllers\Login as LoginController;
 use App\Paises;
 use App\Departamentos;
 use App\Ciudades;
-use App\Tipos_Identificacion;
+use App\Tipos_Identificacion as TiposId;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,7 +72,7 @@ Route::delete('pais/{codigoPais}', function($codigoPais) {
  *******************************************************/
 
  // Obtiene todos los departamentos de base de datos
- Route::get('departamentos', function() { return Departamentos::all(); });
+ Route::get('departamentos', function() { return Departamentos::with('pais')->get(); });
 
  // Obtiene el departamento con el código obtenido por url de base de datos
  Route::get('departamentos/{codigoDepartamento}', function($codigoDepartamento) {
@@ -112,13 +112,18 @@ Route::delete('departamento/{codigoDepartamento}', function($codigoDepartamento)
     }
 });
 
- 
+
 /********************************************************
  *                      Rutas ciudades                  *
  *******************************************************/
 
  // Obtiene todos los paises de base de datos
- Route::get('ciudades', function() { return Ciudades::all(); });
+ Route::get('ciudades', function() {
+     return Ciudades::with('departamento')
+                ->orderBy('codigoDepartamento')
+                ->orderBy('codigoCiudad')
+                ->get();
+    });
 
  // Obtiene el país con el código obtenido por url de base de datos
  Route::get('ciudad/{codigoCiudad}', function($codigoCiudad) {
@@ -145,7 +150,7 @@ Route::put('ciudad/{codigoCiudad}', function($codigoCiudad, Request $request) {
         $ciudad->save();
         return true;
     } catch (\Throwable $th) {
-        return response()->json(["message" => 'Error al actualizar la ciudad con código ' . $codigoPais, "status" => 400, "trace" => $th], 400);
+        return response()->json(["message" => 'Error al actualizar la ciudad con código ' . $codigoCiudad, "status" => 400, "trace" => $th], 400);
     }
 });
 
@@ -163,7 +168,7 @@ Route::delete('ciudad/{codigoCiudad}', function($codigoCiudad) {
  *******************************************************/
 
  // Obtiene todos los departamentos de base de datos
- Route::get('tipos_identificacion', function() { return Tipos_Identificacion::all(); });
+ Route::get('tiposId', function() { return TiposId::all(); });
 
  // Obtiene el departamento con el código obtenido por url de base de datos
  Route::get('TiposId/{codigoTipoId}', function($codigoTipoId) {
@@ -190,7 +195,7 @@ Route::put('tipoId/{codigoTipoId}', function($codigoTipoId, Request $request) {
         $tipoId->save();
         return true;
     } catch (\Throwable $th) {
-        return response()->json(["message" => 'Error al actualizar el tipo de identificacion ' . $codigoDepartamento, "status" => 400, "trace" => $th], 400);
+        return response()->json(["message" => 'Error al actualizar el tipo de identificacion ' . $codigoTipoId, "status" => 400, "trace" => $th], 400);
     }
 });
 

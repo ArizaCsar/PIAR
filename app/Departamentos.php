@@ -10,8 +10,9 @@ class Departamentos extends Model
     protected $primaryKey = 'codigoDepartamento';
     protected $fillable = ['codigoDepartamento', 'descripcionDepartamento','codigoPais'];
     public $timestamps = false;
+    protected $keyType = 'string';
 
     public function pais(){
-        return $this->belongsTo(Paises::class);
+        return $this->belongsTo(Paises::class, 'codigoPais');
     }
 }
