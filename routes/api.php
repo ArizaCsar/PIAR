@@ -6,6 +6,7 @@ use App\Http\Controllers\Login as LoginController;
 use App\Paises;
 use App\Departamentos;
 use App\Ciudades;
+use App\Tipos_Identificacion;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -154,5 +155,50 @@ Route::delete('ciudad/{codigoCiudad}', function($codigoCiudad) {
         return Ciudades::where('codigoCiudad', $codigoCiudad)->delete();
     } catch (\Throwable $th) {
         return response()->json(["message" => 'Error al eliminar la ciudad porque comparte información con algunos departamentos', "status" => 400, "trace" => $th], 400);
+    }
+});
+
+/********************************************************
+ *           Rutas Tipos de Identificacion             *
+ *******************************************************/
+
+ // Obtiene todos los departamentos de base de datos
+ Route::get('tipos_identificacion', function() { return Tipos_Identificacion::all(); });
+
+ // Obtiene el departamento con el código obtenido por url de base de datos
+ Route::get('TiposId/{codigoTipoId}', function($codigoTipoId) {
+    return TiposId::where('codigoTipoId', $codigoTipoId)->firstOrFail();
+});
+
+// Almacena el tipo de identificacion obtenido de la petición en base de datos
+Route::post('tipoId', function (Request $request) {
+    try {
+        $tipoId = new TiposId();
+        $tipoId->codigoTipoId = $request->codigoTipoId;
+        $tipoId->descripcionTipoId = $request->descripcionTipoId;
+        $tipoId->save();
+    } catch (\Throwable $th) {
+        return response()->json(["message" => 'Error al crear el tipo de identificacion ' . $request->descripcionDepartamento, "status" => 400, "trace" => $th], 400);
+    }
+});
+
+// Actualiza la descripción del tipo de identificacion en base de datos
+Route::put('tipoId/{codigoTipoId}', function($codigoTipoId, Request $request) {
+    try {
+        $tipoId = TiposId::where('codigoTipoId', $codigoTipoId)->firstOrFail();
+        $tipoId->descripcionTipoId = $request->descripcionTipoId;
+        $tipoId->save();
+        return true;
+    } catch (\Throwable $th) {
+        return response()->json(["message" => 'Error al actualizar el tipo de identificacion ' . $codigoDepartamento, "status" => 400, "trace" => $th], 400);
+    }
+});
+
+// Elimina el tipo de identificacion con el código obtenido por url
+Route::delete('tipoId/{codigoTipoId}', function($codigoTipoId) {
+    try {
+        return TiposId::where('codigoTipoId', $codigoTipoId)->delete();
+    } catch (\Throwable $th) {
+        return response()->json(["message" => 'Error al eliminar el tipo de identificacion porque comparte información con algunos departamentos', "status" => 400, "trace" => $th], 400);
     }
 });
