@@ -88,10 +88,15 @@ Route::delete('pais/{codigoPais}', function($codigoPais) {
  *******************************************************/
 
  // Obtiene todos los departamentos de base de datos
- Route::get('departamentos', function() { return Departamentos::with('pais')->get(); });
+ Route::get('departamentos', function() { 
+     return Departamentos::with('pais')
+        ->orderBy('codigoPais')
+        ->orderBy('codigoDepartamento')
+        ->get();
+    });
 
  // Obtiene el departamento con el código obtenido por url de base de datos
- Route::get('departamentos/{codigoDepartamento}', function($codigoDepartamento) {
+ Route::get('departamento/{codigoDepartamento}', function($codigoDepartamento) {
     return Departamentos::where('codigoDepartamento', $codigoDepartamento)->firstOrFail();
 });
 
@@ -147,14 +152,14 @@ Route::delete('departamento/{codigoDepartamento}', function($codigoDepartamento)
 });
 
 // Almacena el país obtenido de la petición en base de datos
-Route::post('ciudades', function (Request $request) {
+Route::post('ciudad', function (Request $request) {
     try {
         $ciudad = new Ciudades();
-        $ciudad->codigoCiudad = $request->codigoPais;
+        $ciudad->codigoCiudad = $request->codigoCiudad;
         $ciudad->descripcionCiudad = $request->descripcionCiudad;
         $ciudad->save();
     } catch (\Throwable $th) {
-        return response()->json(["message" => 'Error al crear la ciudad ' . $request->descripcionPais, "status" => 400, "trace" => $th], 400);
+        return response()->json(["message" => 'Error al crear la ciudad ' . $request->descripcionCiudad, "status" => 400, "trace" => $th], 400);
     }
 });
 
@@ -481,7 +486,7 @@ Route::post('tipoTelefono', function (Request $request) {
 });
 
 // Actualiza el tipo de telefono en base de datos
-Route::put('tipoTelefono/{codigoMateria}', function($codigoMateria, Request $request) {
+Route::put('tipoTelefono/{codigoMateria}', function($codigoTipoTelefono, Request $request) {
     try {
         $tipoTelefono = TiposTelefonos::where('codigoTipoTelefono', $codigoTipoTelefono)->firstOrFail();
         $tipoTelefono->descripcionTipoTelefono = $request->descripcionTipoTelefono;
@@ -688,11 +693,16 @@ Route::delete('eps/{codigoEps}', function($codigoEps) {
  
 /********************************************************
  *          Rutas Entidades Educaticas                  *
- ********************************************************
- */
+ *******************************************************/
 
   // Obtiene todos las entidades educativas de base de datos
-  Route::get('entidadesEducativas', function() { return EntidadesEducativas::all(); });
+  Route::get('entidadesEducativas', function() { 
+      return EntidadesEducativas::with('sede','jornada')
+      ->orderBy('codigoSede')
+      ->orderBy('codigoJornada')
+      ->orderBy('codigoEntidadEducativa')
+      ->get();
+    });
 
   // Obtiene la entidad educativa con el códiga obtenido por url de base de datos
   Route::get('entidadEducativa/{codigoEntidadEducativa}', function($codigoEntidadEducativa) {

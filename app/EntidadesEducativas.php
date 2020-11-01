@@ -8,7 +8,7 @@ class EntidadesEducativas extends Model
 {
     protected $table = 'entidades_educativas';
     protected $primaryKey = 'codigoEntidadEducativa';
-    protected $fillable = ['codigoEntidadEducativa', 'nobreEntidadEducativa','principal', 'codigoSede', 'codigoJornada'];
+    protected $fillable = ['codigoEntidadEducativa', 'nombreEntidadEducativa','principal', 'codigoSede', 'codigoJornada'];
     public $timestamps = false;
     protected $keyType = 'number';
 
